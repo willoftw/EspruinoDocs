@@ -48,11 +48,11 @@ exports.connect = function(i2c, callback) {
    i2c.writeTo(C.OLED_ADDRESS, [C.OLED_CMD, 7]);
 
    var chunk = new Uint8Array(C.OLED_CHUNK+1);
-   console.log("created chunk array");
+   console.log("created chunk array of length: " + chunk.length);
 
    chunk[0] = C.OLED_CHAR;
    for (var p=0; p<C.OLED_LENGTH; p+=C.OLED_CHUNK) {
-     console.log("writing to oled");
+     console.log("writing to oled: " + p);
      chunk.set(new Uint8Array(this.buffer,p,C.OLED_CHUNK), 1);
      i2c.writeTo(C.OLED_ADDRESS, chunk);
    }
